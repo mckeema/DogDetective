@@ -1,12 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import CameraComponent from './src/components/CameraComponent';
+import { StyleSheet, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './src/screens/HomeScreen';
+import InfoScreen from './src/screens/InfoScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <CameraComponent />
-        </View>
+        <NavigationContainer>
+            <Stack.Navigator
+                initialRouteName='Back'
+            >
+                <Stack.Screen name='Back' component={HomeScreen} options={{ headerShown: false }} />
+                <Stack.Screen name='Info' component={InfoScreen} />
+            </Stack.Navigator>
+        </NavigationContainer>
     );
 }
 

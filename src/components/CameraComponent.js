@@ -125,6 +125,82 @@ class CameraComponent extends Component {
         return (
             <View style={styles.MainView}>
                 {this.state.stage === 'waiting' ?
+                    // <Camera
+                    //     style={styles.Camera}
+                    //     ratio={'16:9'}
+                    //     type={this.state.camType}
+                    //     ref={(ref) => {
+                    //         this.camera = ref;
+                    //     }}
+                    // >
+                    //     <View style={styles.CamView}>
+                    //         <View styles={styles.topButtons}>
+                    //             <View style={styles.infoButton}>
+                    //                 {/* <TouchableOpacity
+                    //                     // style={styles.infoButton}
+                    //                     disabled={this.state.stage !== 'waiting'}
+                    //                     onPress={() => {
+                    //                         console.log('info button pressed');
+                    //                     }}
+                    //                 >
+                    //                     <Feather name='info' size={36} color='white' />
+                    //                 </TouchableOpacity> */}
+                    //             </View>
+                    //             <View style={styles.flipButton}>
+                    //                 {/* <TouchableOpacity
+                    //                     // style={styles.flipButton}
+                    //                     disabled={this.state.stage !== 'waiting'}
+                    //                     onPress={() => {
+                    //                         this.state.camType === Camera.Constants.Type.back
+                    //                             ? this.setState({...this.state, camType: Camera.Constants.Type.front})
+                    //                             : this.setState({...this.state, camType: Camera.Constants.Type.back});
+                    //                     }}
+                    //                 >
+                    //                     <Feather name='repeat' size={36} color='white' />
+                    //                 </TouchableOpacity> */}
+                    //             </View>
+                    //         </View>
+                    //         <View style={styles.picButton}>
+                    //             {/* <TouchableOpacity
+                    //                 // style={styles.picButton}
+                    //                 disabled={this.state.stage !== 'waiting'}
+                    //                 onPress={async () => {
+                    //                     let photo = await this.camera.takePictureAsync({ base64: true, skipProcessing: true });
+                    //                     this.setState({...this.state, img_uri: photo.uri, stage: 'processing'});
+                    //                     const compressed = await compress_image(photo);
+                    //                     await this.make_predictions(compressed);
+                    //                     this.setState({...this.state, stage: 'done'});
+                    //                 }}
+                    //             >
+                    //                 <Feather name='circle' size={80} color='white' />
+                    //             </TouchableOpacity> */}
+                    //         </View>
+                    //         <View style={styles.imgButton}>
+                    //             {/* <TouchableOpacity
+                    //                 // style={styles.imgButton}
+                    //                 disabled={this.state.stage !== 'waiting'}
+                    //                 onPress={async () => {
+                    //                     if (!this.state.hasRollPermission) {
+                    //                         alert('Camera roll permissions needed to use.');
+                    //                         return;
+                    //                     }
+                    //                     let result = await ImagePicker.launchImageLibraryAsync({
+                    //                         allowsMultipleSelection: false,
+                    //                         base64: true
+                    //                     });
+                    //                     if (!result.cancelled) {
+                    //                         this.setState({...this.state, stage: 'processing', img_uri: result.uri});
+                    //                         let compressed = await compress_image(result);
+                    //                         await this.make_predictions(compressed);
+                    //                         this.setState({...this.state, stage: 'done'});
+                    //                     }
+                    //                 }}
+                    //             >
+                    //                 <Feather name='image' size={36} color='white' />
+                    //             </TouchableOpacity> */}
+                    //         </View>
+                    //      </View>
+                    // </Camera>
                     <Camera
                         style={styles.Camera}
                         ratio={'16:9'}
@@ -134,55 +210,68 @@ class CameraComponent extends Component {
                         }}
                     >
                         <View style={styles.CamView}>
-                            <View style={styles.flipButtonView}>
-                                <TouchableOpacity
-                                    style={styles.flipButton}
-                                    disabled={this.state.stage !== 'waiting'}
-                                    onPress={() => {
-                                        this.state.camType === Camera.Constants.Type.back
-                                            ? this.setState({...this.state, camType: Camera.Constants.Type.front})
-                                            : this.setState({...this.state, camType: Camera.Constants.Type.back});
-                                    }}
-                                >
-                                    <Feather name='repeat' size={36} color='white' />
-                                </TouchableOpacity>
+                            <View style={styles.topButtons}>
+                                <View style={styles.infoButton}>
+                                    <TouchableOpacity
+                                        disabled={this.state.stage !== 'waiting'}
+                                        onPress={() => {
+                                            this.props.navigator.navigate('Info');
+                                        }}
+                                    >
+                                        <Feather name='info' size={36} color='white' />
+                                    </TouchableOpacity>
+                                </View>
+                                <View style={styles.flipButton}>
+                                    <TouchableOpacity
+                                        disabled={this.state.stage !== 'waiting'}
+                                        onPress={() => {
+                                            this.state.camType === Camera.Constants.Type.back
+                                                ? this.setState({...this.state, camType: Camera.Constants.Type.front})
+                                                : this.setState({...this.state, camType: Camera.Constants.Type.back});
+                                        }}
+                                    >
+                                        <Feather name='repeat' size={36} color='white' />
+                                    </TouchableOpacity>
+                                </View>
                             </View>
-                            <TouchableOpacity
-                                style={styles.picButton} 
-                                disabled={this.state.stage !== 'waiting'}
-                                onPress={async () => {
-                                    let photo = await this.camera.takePictureAsync({ base64: true, skipProcessing: true });
-                                    this.setState({...this.state, img_uri: photo.uri, stage: 'processing'});
-                                    const compressed = await compress_image(photo);
-                                    await this.make_predictions(compressed);
-                                    this.setState({...this.state, stage: 'done'});
-                                }}
-                            >
-                                <Feather name='circle' size={80} color='white' />
-                            </TouchableOpacity>
-                            <TouchableOpacity
-                                style={styles.imgButton}
-                                disabled={this.state.stage !== 'waiting'}
-                                onPress={async () => {
-                                    if (!this.state.hasRollPermission) {
-                                        alert('Camera roll permissions needed to use.');
-                                        return;
-                                    }
-                                    let result = await ImagePicker.launchImageLibraryAsync({
-                                        allowsMultipleSelection: false,
-                                        base64: true
-                                    });
-                                    if (!result.cancelled) {
-                                        this.setState({...this.state, stage: 'processing', img_uri: result.uri});
-                                        let compressed = await compress_image(result);
+                            <View style={styles.picButton}>
+                                <TouchableOpacity
+                                    disabled={this.state.stage !== 'waiting'}
+                                    onPress={async () => {
+                                        let photo = await this.camera.takePictureAsync({ base64: true, skipProcessing: true });
+                                        this.setState({...this.state, img_uri: photo.uri, stage: 'processing'});
+                                        const compressed = await compress_image(photo);
                                         await this.make_predictions(compressed);
                                         this.setState({...this.state, stage: 'done'});
-                                    }
-                                }}
-                            >
-                                <Feather name='image' size={36} color='white' />
-                            </TouchableOpacity>
-                         </View>
+                                    }}
+                                >
+                                    <Feather name='circle' size={80} color='white' />
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.imgButton}>
+                                <TouchableOpacity
+                                    disabled={this.state.stage !== 'waiting'}
+                                    onPress={async () => {
+                                        if (!this.state.hasRollPermission) {
+                                            alert('Camera roll permissions needed to use.');
+                                            return;
+                                        }
+                                        let result = await ImagePicker.launchImageLibraryAsync({
+                                            allowsMultipleSelection: false,
+                                            base64: true
+                                        });
+                                        if (!result.cancelled) {
+                                            this.setState({...this.state, stage: 'processing', img_uri: result.uri});
+                                            let compressed = await compress_image(result);
+                                            await this.make_predictions(compressed);
+                                            this.setState({...this.state, stage: 'done'});
+                                        }
+                                    }}
+                                >
+                                    <Feather name='image' size={36} color='white' />
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </Camera>
                 : null}
                 {this.state.stage === 'processing' ?
@@ -226,11 +315,13 @@ const styles = StyleSheet.create({
     },
     CamView: {
         flex: 1,
+        flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'flex-end'
     },
     picButton: {
-        paddingBottom: 5
+        paddingBottom: 5,
+        alignItems: 'center'
     },
     Text: {
         color: 'white'
@@ -239,19 +330,30 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFill,
         backgroundColor: 'rgba(0,0,0,0.6)'
     },
-    flipButton: {
-        paddingTop: 25,
-        paddingRight: 10
-    },
-    flipButtonView: {
-        flex: 1,
-        alignSelf: 'flex-end'
-    },
     imgButton: {
-        paddingBottom: 20
+        paddingBottom: 20,
+        alignItems: 'center'
     },
     Image: {
         ...StyleSheet.absoluteFill
+    },
+    flipButton: {
+        paddingTop: 25,
+        paddingRight: 10,
+        alignItems: 'flex-end'
+    },
+
+    infoButton: {
+        paddingTop: 25,
+        paddingLeft: 10,
+        alignItems: 'flex-start'
+    },
+    topButtons: {
+        flexDirection: 'row',
+        alignItems: 'baseline',
+        flex: 1,
+        width: "100%",
+        justifyContent: 'space-between'
     }
 });
 
