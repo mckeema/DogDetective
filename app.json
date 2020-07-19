@@ -16,11 +16,16 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-    "ios": {
-      "supportsTablet": true
-    },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "ios": {
+      "bundleIdentifier": "mckeema.dogdetective",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "mckeema.dogdetective",
+      "versionCode": 1
     }
   }
 }
