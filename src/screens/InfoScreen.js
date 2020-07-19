@@ -2,9 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, Linking, FlatList } from 'react-native';
 import LicenseComponent from '../components/LicenseComponent';
 import InfoComponent from '../components/InfoComponent';
-import Constants from 'expo-constants';
-
-const monospace = Constants.platform.ios ? 'Menlo' : 'monospace';
 
 export default function InfoScreen() {
     const licenses = [
