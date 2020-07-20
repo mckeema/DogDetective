@@ -10,7 +10,7 @@ If you choose to use my Service, then you agree to the collection and use of inf
 
 I do not knowingly collect any personal information of any users of Dog Detective. I do not have any servers set up to store personal information, nor have I implemented any data collection or logging in the app's code. However, some of the third party services I use may collect your data unbeknownst to me.
 
-List of third party service providers used by the app and links to their privacy policys (where applicable)
+List of third party service providers used by the app and links to their privacy policies (where applicable)
 
 *   [Expo](https://expo.io/privacy)
 *   [Google Play Services](https://www.google.com/policies/privacy/)
