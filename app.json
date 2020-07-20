@@ -25,7 +25,8 @@
     },
     "android": {
       "package": "mckeema.dogdetective",
-      "versionCode": 1
+      "versionCode": 1,
+      "permissions": []
     }
   }
 }
