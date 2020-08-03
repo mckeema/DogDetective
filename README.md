@@ -6,6 +6,11 @@ See a dog, but just can't figure out what breed it is? Wondering what kind of do
 * **Versatile** - Take a picture using your front _or_ back camera, or select one from your photo library
 * **Completely free** - No ads, just dogs
 
+## Download
+
+[Google Play Store](https://play.google.com/store/apps/details?id=mckeema.dogdetective)
+Apple App Store coming soon!
+
 ## Compilation
 
 Dog Detective can be built using the standard Expo build system with no special settings.
