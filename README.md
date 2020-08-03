@@ -9,6 +9,7 @@ See a dog, but just can't figure out what breed it is? Wondering what kind of do
 ## Download
 
 [Google Play Store](https://play.google.com/store/apps/details?id=mckeema.dogdetective)
+
 Apple App Store coming soon!
 
 ## Compilation
